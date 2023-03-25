@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OfficerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +22,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']],function () {
+    Route::get('/', DashboardController::class)->name('admin.dashboard');
+
+    // Officer
+    Route::resource('officer', OfficerController::class, ['as' => 'admin']);
+});
