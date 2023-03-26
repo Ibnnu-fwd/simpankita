@@ -6,8 +6,9 @@
             <span class="text-danger">*</span>
         @endif
     </label>
-    <input id="{{ $id }}" type="{{ $type }}" class="form-control @error($name) is-invalid @enderror"
-        name="{{ $name }}" value="{{ old($name) }}" {{ $required ? 'required' : '' }} placeholder="{{$placeholder ? $placeholder  : ''}}" {{$type == 'password' ? 'autocomplete="on"' : ''}}/>
+    <input id="{{ $id }}" type="{{ $type }}" name="{{ $name }}"
+        placeholder="{{ __($placeholder) }}" @if ($required) required @endif
+        @error($name) is-invalid @enderror {!! $attributes->merge(['class' => 'form-control']) !!} />
     @error($name)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

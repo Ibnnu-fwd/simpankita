@@ -26,5 +26,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']],function () {
     Route::get('/', DashboardController::class)->name('admin.dashboard');
 
     // Officer
+    Route::post('officer/{id}/activate', [OfficerController::class, 'activate'])->name('admin.officer.activate');
     Route::resource('officer', OfficerController::class, ['as' => 'admin']);
 });

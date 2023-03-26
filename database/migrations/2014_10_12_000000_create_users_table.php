@@ -10,12 +10,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('officer_id')->nullable();
             $table->string('username');
             $table->string('email')->unique();
             $table->longText('password');
-            $table->string('name');
-            $table->longText('avatar')->nullable();
             $table->integer('role')->default(0); // 0 = member, 1 = officer, 2 = admin
             $table->integer('is_active')->default(1); // 0 = inactive, 1 = active
             $table->rememberToken();

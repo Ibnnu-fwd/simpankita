@@ -22,12 +22,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, Uuid;
 
     protected $fillable = [
-        'officer_id',
         'username',
         'email',
         'password',
-        'name',
-        'avatar',
         'role',
         'is_active'
     ];
@@ -45,5 +42,11 @@ class User extends Authenticatable
     {
         $this->is_active = self::IS_INACTIVE;
         $this->save();
+    }
+
+    // RELATIONSHIP
+    public function detailUser()
+    {
+        return $this->hasOne(DetailUser::class);
     }
 }
